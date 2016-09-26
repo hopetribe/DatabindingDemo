@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="firstName"
+            type="String"/>
+        <variable
+            name="lastName"
+            type="String"/>
+
+        <variable
+            name="usrInfo"
+            type="com.hopetribe.databindingdemo.MainActivity.UserInfo"/>
+
+        <variable
+            name="presenter"
+            type="com.hopetribe.databindingdemo.MainActivity.Presenter"/>
+    </data>
+    <RelativeLayout
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="com.hopetribe.databindingdemo.MainActivity">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_alignParentStart="true"
+            android:id="@+id/fullName"
+            android:layout_alignParentEnd="true"
+            android:textAppearance="@style/TextAppearance.AppCompat.Widget.PopupMenu.Large"
+            android:textAlignment="gravity"
+            android:textColor="@android:color/holo_blue_dark"
+            android:gravity="center"
+            android:text="@{`你的姓名是：` + usrInfo.lastName + usrInfo.firstName}"
+            android:hint="请在下方输入你的姓氏和名字"
+            android:layout_alignParentTop="true"
+            android:layout_height="36dp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:inputType="textPersonName"
+            android:text="@={usrInfo.firstName}"
+            android:id="@+id/first_name"
+            android:hint="first name"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/fullName"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:inputType="textPersonName"
+            android:text="@={usrInfo.lastName}"
+            android:id="@+id/last_name"
+            android:hint="last name"
+            android:gravity="center"
+            android:textColor="@android:color/holo_blue_dark"
+            android:layout_marginTop="20dp"
+            android:layout_below="@+id/first_name"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true" />
+
+        <Button
+            android:text="好的"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/last_name"
+            android:layout_marginTop="25dp"
+            android:id="@+id/btn_ok"
+            android:onClick="@{()->presenter.onBtnClick(lastName + firstName)}"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentStart="true" />
+    </RelativeLayout>
+</layout>
+
